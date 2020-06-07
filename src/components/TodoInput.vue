@@ -37,14 +37,13 @@
     },
     methods: {
       addTodo() {
-        if (this.newTodoItem !== '') {
-          let value = this.newTodoItem && this.newTodoItem.trim();
-          console.log(value)
-          this.$emit('addTodo', value);
-          this.clearInput();
+        if (this.newTodoItem === '') {
+          this.showModal = !this.showModal;
           return;
         }
-        this.showModal = !this.showModal;
+        let value = this.newTodoItem && this.newTodoItem.trim();
+        this.$emit('addTodo', value);
+        this.clearInput();
       },
       clearInput() {
         this.newTodoItem = '';
@@ -58,16 +57,19 @@
   input:focus {
     outline: none;
   }
+
   .inputBox {
     background: white;
     height: 50px;
     line-height: 50px;
     border-radius: 5px;
   }
+
   .inputBox input {
     border-style: none;
     font-size: 0.9rem;
   }
+
   .addContainer {
     float: right;
     background: linear-gradient(to right, #6478FB, #8763FB);
@@ -75,6 +77,7 @@
     width: 3rem;
     border-radius: 0 5px 5px 0;
   }
+
   .addBtn {
     color: white;
     vertical-align: middle;
